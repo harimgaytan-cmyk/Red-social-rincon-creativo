@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rincón Creativo - Perfil de Usuario</title>
+    <link rel="stylesheet" href="mural RS UX.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de perfil */
+        .perfil-usuario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: relative;
+            z-index: 15;
+        }
+        
+        .volver-btn {
+            background: #333333;
+            border: 1px solid #00ff66;
+            color: #88ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .volver-btn:hover {
+            background: #00cc44;
+            color: #000000;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00ff66;
+        }
+        
+        .follow-user-btn, .unfollow-user-btn {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .follow-user-btn {
+            background: linear-gradient(95deg, #00cc44, #00ff66);
+            color: #000000;
+        }
+        
+        .follow-user-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ff66;
+        }
+        
+        .unfollow-user-btn {
+            background: #ff3333;
+            color: white;
+            border: 1px solid #ff6666;
+        }
+        
+        .unfollow-user-btn:hover {
+            background: #ff0000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ff3333;
+        }
+        
+        .perfil-fondo-usuario {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.8;
+            transition: background-image 0.3s ease;
+        }
+        
+        .perfil-card {
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .perfil-card .stat {
+            transition: all 0.3s ease;
+        }
+        
+        .perfil-card .bio {
+            transition: all 0.3s ease;
+        }
+        
+        .perfil-avatar-cuadrado {
+            transition: all 0.3s ease;
+        }
+        
+        #usuarioPostsFeed .post-card {
+            transition: all 0.3s ease;
+        }
+        
+        #usuarioPostsFeed .like-btn, 
+        #usuarioPostsFeed .comment-btn, 
+        #usuarioPostsFeed .share-btn {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="vintage-overlay"></div>
+
+    <div class="mural-container">
+        <!-- HEADER -->
+        <div class="metro-header">
+            <div class="logo-area">
+                <h1 class="metro-titulo">RINCON<span class="log-highlight">CREATIVO</span></h1>
+                <div class="user-data-container">
+                    <div class="user-foto-header" id="userFotoHeader">
+                        <img id="userFotoImagen" class="user-foto-img" src="" alt="Foto">
+                        <div class="user-foto-emoji" id="userFotoEmoji"></div>
+                    </div>
+                    <div class="user-textos">
+                        <div class="user-nickname-header" id="userNicknameHeader"></div>
+                        <div class="user-username-header" id="userUsernameHeader"></div>
+                    </div>
+                </div>
+                <div class="estado-online" id="estadoOnline">
+                    <span class="punto-verde"></span> (: 0 conectados
+                </div>
+            </div>
+            <div class="user-info" id="userInfo">
+                <button class="logout-btn" id="logoutBtn">[x] SALIR</button>
+            </div>
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN -->
+        <div class="nav-bar">
+            <button class="nav-btn" id="btnMuro">:-] MURO</button>
+            <button class="nav-btn" id="btnPopulares">*-* POPULARES</button>
+            <button class="nav-btn" id="btnAmigos">:D SIGUIENDO</button>
+            <button class="nav-btn" id="btnBuscar">(?) BUSCAR</button>
+            <button class="nav-btn" id="btnMiPerfil">=) MI PERFIL</button>
+        </div>
+
+        <!-- CONTENEDOR DE SECCIONES -->
+        <div class="sections-container">
+            <!-- SECCIÓN: PERFIL DEL USUARIO (vista espectador) -->
+            <div id="perfilUsuario" class="section active">
+                <div class="perfil-usuario-header">
+                    <button class="volver-btn" id="volverBtn">← VOLVER AL MURO</button>
+                    <div class="perfil-usuario-actions" id="perfilUsuarioActions"></div>
+                </div>
+                
+                <!-- Fondo del perfil del usuario -->
+                <div class="perfil-fondo-usuario" id="perfilFondoUsuario"></div>
+                
+                <!-- Tarjeta de perfil del usuario -->
+                <div class="perfil-card" id="perfilUsuarioCard">
+                    <div class="perfil-header">
+                        <div class="perfil-avatar-container">
+                            <div class="perfil-avatar-cuadrado" id="perfilUsuarioAvatar">
+                                <img id="perfilUsuarioImagen" class="perfil-imagen" src="" alt="Foto de perfil">
+                                <div class="perfil-avatar-emoji" id="perfilUsuarioAvatarEmoji"></div>
+                            </div>
+                        </div>
+                        <div class="perfil-stats">
+                            <div class="stat">:-) <span id="perfilUsuarioPostCount">0</span> posts</div>
+                            <div class="stat">👥 <span id="perfilUsuarioFollowersCount">0</span> seguidores</div>
+                            <div class="stat">♥ <span id="perfilUsuarioLikesCount">0</span> likes</div>
+                        </div>
+                    </div>
+                    <div class="perfil-info">
+                        <h2 id="perfilUsuarioNombre">Usuario</h2>
+                        <div class="perfil-nickname" id="perfilUsuarioNickname"></div>
+                        <div class="perfil-username" id="perfilUsuarioUsername"></div>
+                        <p class="join-date">📅 Se unió: <span id="perfilUsuarioJoinDate">---</span></p>
+                        <p class="bio" id="perfilUsuarioBio">...</p>
+                    </div>
+                </div>
+                
+                <!-- Sección de posts del usuario -->
+                <div class="perfil-posts-section">
+                    <div class="info-card" id="perfilUsuarioPostsCard">
+                        <h3>:-) PUBLICACIONES :-)</h3>
+                        <div id="usuarioPostsFeed" class="posts-feed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="perfil RS UX.js"></script>
+</body>
+</html>

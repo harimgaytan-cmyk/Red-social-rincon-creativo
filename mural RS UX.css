@@ -1,0 +1,1598 @@
+/* RESET & BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: url('Imagenes RS UX/fondo_mural.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'VT323', 'Courier New', monospace;
+    position: relative;
+    padding: 20px;
+}
+
+.vintage-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 4px);
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+}
+
+.mural-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.metro-header {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 20px 8px 20px 8px;
+    border: 2px solid #00cc44;
+    box-shadow: 0 0 20px #00ff66, 0 0 40px #00aa33;
+    padding: 1.2rem 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+    z-index: 100;
+}
+
+.logo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.metro-titulo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #ff66ff, #ff1493, #ffcc00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px #ff44ee;
+}
+
+.log-highlight {
+    background: linear-gradient(45deg, #ff99ff, #ff44aa, #ffff00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.user-data-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.user-foto-header {
+    width: 40px;
+    height: 40px;
+    background: #0a0a0a;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.user-foto-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.user-foto-emoji {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-foto-header.has-image .user-foto-emoji {
+    display: none;
+}
+
+.user-foto-header.has-image .user-foto-img {
+    display: block;
+}
+
+.user-textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.user-nickname-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #00ff66;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00cc44;
+}
+
+.user-username-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #88ff88;
+    opacity: 0.8;
+}
+
+.estado-online {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #00cc4455;
+    border-radius: 30px;
+    padding: 4px 12px;
+    border: 1px solid #00ff66;
+    font-size: 0.8rem;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    margin-top: 0.5rem;
+}
+
+.punto-verde {
+    width: 10px;
+    height: 10px;
+    background: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ff66;
+    animation: puntoLatido 0.8s infinite alternate;
+}
+
+@keyframes puntoLatido {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; box-shadow: 0 0 16px #88ff88; }
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    background: #333333;
+    border: 1px solid #00ff66;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    box-shadow: 0 0 10px #00ff66;
+    transform: scale(1.05);
+}
+
+/* BARRA DE NAVEGACIÓN */
+.nav-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.8rem;
+    border-radius: 60px;
+    border: 1px solid #00cc44;
+    position: relative;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00cc44;
+    color: #88ff88;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    padding: 8px 16px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    box-shadow: 0 0 15px #00ff66;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: linear-gradient(95deg, #00cc44, #00ff66);
+    color: #000000;
+    border-color: #88ff88;
+    box-shadow: 0 0 15px #00ff66;
+}
+
+/* CONTENEDOR DE SECCIONES */
+.sections-container {
+    position: relative;
+    z-index: 50;
+}
+
+/* SECCIONES */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CREAR POST */
+.crear-post {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.post-textarea {
+    width: 100%;
+    background: #1a1a1a;
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 12px 18px;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    color: #88ff88;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.post-textarea:focus {
+    outline: none;
+    border-color: #00ff66;
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
+
+.emoji-btn, .image-btn {
+    background: #1a1a1a;
+    border: 1px solid #00cc44;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.emoji-btn:hover, .image-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.publish-btn {
+    background: linear-gradient(95deg, #00cc44, #00ff66);
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 6px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.publish-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00ff66;
+}
+
+.image-preview-container {
+    position: relative;
+    margin-top: 10px;
+    display: inline-block;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #00ff66;
+    background: #1a1a1a;
+}
+
+.image-preview {
+    max-width: 200px;
+    max-height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #ff3333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.remove-image-btn:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
+
+.post-image {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 15px;
+    border: 2px solid #00ff66;
+    background: #1a1a1a;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.post-image:hover {
+    transform: scale(1.02);
+}
+
+.post-image img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 13px;
+    display: block;
+    margin: 0 auto;
+}
+
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.image-modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 3px solid #00ff66;
+    border-radius: 20px;
+    box-shadow: 0 0 50px #00ff66;
+}
+
+.emoticones-panel {
+    background: #1a1a1a;
+    border: 1px solid #00cc44;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.emo-classic {
+    background: #333333;
+    border: 1px solid #00ff66;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.emo-classic:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.1);
+}
+
+/* FEED DE POSTS */
+.posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.2rem;
+    transition: all 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #00ff66;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #00cc44;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.author-avatar-container {
+    width: 40px;
+    height: 40px;
+    background: #0a0a0a;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.author-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.author-avatar-container.has-image .author-avatar-img {
+    display: block;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #88ff88;
+}
+
+.author-username {
+    font-size: 0.6rem;
+    color: #66cc66;
+    font-family: 'Courier New', monospace;
+}
+
+.post-date {
+    font-size: 0.7rem;
+    color: #66cc66;
+    font-family: 'Courier New', monospace;
+}
+
+.post-content {
+    font-size: 1.2rem;
+    color: #ccffcc;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.post-footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.like-btn, .comment-btn, .share-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00cc44;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.like-btn:hover, .comment-btn:hover, .share-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.like-btn.liked {
+    background: #00cc44;
+    color: #000000;
+    border-color: #00ff66;
+}
+
+.delete-post-btn {
+    background: #ff3333;
+    border: none;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.delete-post-btn:hover {
+    background: #ff0000;
+    transform: scale(1.05);
+}
+
+/* SECCIÓN POPULARES - Mismo estilo que el mural */
+#populares .posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#populares .post-card {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.2rem;
+    transition: all 0.2s;
+}
+
+#populares .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #00ff66;
+}
+
+#populares .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #00cc44;
+}
+
+#populares .post-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+#populares .author-avatar-container {
+    width: 40px;
+    height: 40px;
+    background: #0a0a0a;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#populares .author-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+#populares .author-avatar-container.has-image .author-avatar-img {
+    display: block;
+}
+
+#populares .author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#populares .author-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #88ff88;
+}
+
+#populares .author-username {
+    font-size: 0.6rem;
+    color: #66cc66;
+    font-family: 'Courier New', monospace;
+}
+
+#populares .post-date {
+    font-size: 0.7rem;
+    color: #66cc66;
+    font-family: 'Courier New', monospace;
+}
+
+#populares .post-content {
+    font-size: 1.2rem;
+    color: #ccffcc;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+#populares .post-image {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 15px;
+    border: 2px solid #00ff66;
+    background: #1a1a1a;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#populares .post-image:hover {
+    transform: scale(1.02);
+}
+
+#populares .post-image img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 13px;
+    display: block;
+    margin: 0 auto;
+}
+
+#populares .post-footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+#populares .like-btn, #populares .comment-btn, #populares .share-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00cc44;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+#populares .like-btn:hover, #populares .comment-btn:hover, #populares .share-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+#populares .like-btn.liked {
+    background: #00cc44;
+    color: #000000;
+    border-color: #00ff66;
+}
+
+/* PERFIL */
+.perfil-fondo-full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Imagenes RS UX/fondo_mural.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.perfil-fondo-botones {
+    position: relative;
+    z-index: 15;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+}
+
+.cambiar-fondo-btn, .eliminar-fondo-btn {
+    background: #333333;
+    border: 1px solid #00ff66;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cambiar-fondo-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.eliminar-fondo-btn {
+    background: #ff3333;
+    border-color: #ff6666;
+    color: white;
+}
+
+.eliminar-fondo-btn:hover {
+    background: #ff0000;
+    transform: scale(1.05);
+}
+
+.perfil-colores-rgb {
+    position: relative;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.color-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.color-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: #88ff88;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.color-picker {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.color-option-preview {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #ffffff33;
+    box-shadow: 0 0 5px currentColor;
+}
+
+.reset-colors-btn {
+    background: #ff6600;
+    border: 1px solid #ffaa44;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: center;
+}
+
+.reset-colors-btn:hover {
+    background: #ff4400;
+    transform: scale(1.05);
+}
+
+.perfil-temas-botones {
+    position: relative;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.tema-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #88ff88;
+}
+
+.tema-option {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tema-option:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px white;
+}
+
+.perfil-card {
+    position: relative;
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.perfil-avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.perfil-avatar-cuadrado {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    border: 3px solid #00ff66;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px #00ff66, inset 0 0 10px rgba(0, 255, 102, 0.2);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.perfil-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.perfil-avatar-emoji {
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 10px #00ff66);
+}
+
+.perfil-avatar-cuadrado.has-image .perfil-avatar-emoji {
+    display: none;
+}
+
+.perfil-avatar-cuadrado.has-image .perfil-imagen {
+    display: block;
+}
+
+.cambiar-foto-btn {
+    background: #333333;
+    border: 1px solid #00ff66;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cambiar-foto-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.perfil-stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: rgba(0, 204, 68, 0.2);
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.stat.clickable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.stat.clickable:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.perfil-info h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px #00cc44;
+    transition: all 0.3s ease;
+}
+
+.perfil-nickname, .perfil-username {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    transition: all 0.3s ease;
+}
+
+.join-date {
+    margin-bottom: 0.8rem;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.bio {
+    background: #1a1a1a;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 1rem 0;
+    border-left: 4px solid #00ff66;
+    transition: all 0.3s ease;
+}
+
+.edit-bio-btn {
+    background: #333333;
+    border: 1px solid #00ff66;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-bio-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    box-shadow: 0 0 10px #00ff66;
+}
+
+.perfil-posts-section {
+    position: relative;
+    z-index: 10;
+    margin-top: 2rem;
+}
+
+.perfil-posts-section .info-card {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.perfil-posts-section h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    color: #00ff66;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px #00cc44;
+    transition: all 0.3s ease;
+}
+
+.info-card {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 1.5rem;
+}
+
+.info-card h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    color: #00ff66;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px #00cc44;
+}
+
+/* LISTA DE AMIGOS */
+.friends-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: rgba(0, 204, 68, 0.1);
+    border-radius: 15px;
+    border: 1px solid #00cc44;
+}
+
+.friend-avatar-container {
+    width: 40px;
+    height: 40px;
+    background: #0a0a0a;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.friend-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.friend-avatar-container.has-image .friend-avatar-img {
+    display: block;
+}
+
+.friend-name {
+    flex: 1;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    color: #88ff88;
+}
+
+.friend-status {
+    font-size: 0.7rem;
+    color: #00ff66;
+    font-family: 'Courier New', monospace;
+}
+
+.add-friend-btn {
+    width: 100%;
+    background: linear-gradient(95deg, #00cc44, #00ff66);
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-friend-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px #00ff66;
+}
+
+/* BÚSQUEDA */
+.search-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    background: #1a1a1a;
+    border: 2px solid #00cc44;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: #88ff88;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #00ff66;
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.search-submit-btn {
+    background: linear-gradient(95deg, #00cc44, #00ff66);
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-submit-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(0, 204, 68, 0.1);
+    border-radius: 15px;
+    border: 1px solid #00cc44;
+    transition: all 0.2s;
+}
+
+.search-result-item:hover {
+    transform: translateX(5px);
+    background: rgba(0, 204, 68, 0.2);
+}
+
+.search-result-avatar {
+    width: 50px;
+    height: 50px;
+    background: #0a0a0a;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.search-result-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.search-result-avatar.has-image .search-result-img {
+    display: block;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #88ff88;
+    margin-bottom: 5px;
+}
+
+.search-result-username {
+    font-size: 0.7rem;
+    color: #66cc66;
+    font-family: 'Courier New', monospace;
+}
+
+.search-result-stats {
+    font-size: 0.65rem;
+    color: #88ff88;
+    margin-top: 4px;
+}
+
+.search-result-add-btn {
+    background: #333333;
+    border: 1px solid #00ff66;
+    color: #88ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.search-result-add-btn:hover {
+    background: #00cc44;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.search-result-add-btn.added {
+    background: #00cc44;
+    color: #000000;
+    cursor: default;
+}
+
+.search-result-add-btn.added:hover {
+    transform: none;
+}
+
+.search-result-current-user {
+    background: #333333;
+    border: 1px solid #ff6600;
+    color: #ffaa66;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: default;
+}
+
+/* MENSAJE FLOTANTE */
+.floating-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 2px solid;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translate(-50%, -100px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00cc44;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ff66;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .metro-titulo {
+        font-size: 0.9rem;
+    }
+    
+    .nav-btn {
+        font-size: 0.5rem;
+        padding: 5px 10px;
+    }
+    
+    .perfil-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .perfil-avatar-cuadrado {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .perfil-avatar-emoji {
+        font-size: 3rem;
+    }
+    
+    .user-foto-header {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .author-avatar-container {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .image-preview {
+        max-width: 150px;
+        max-height: 120px;
+    }
+    
+    .search-result-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .search-result-name {
+        font-size: 0.5rem;
+    }
+    
+    .friend-avatar-container {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .perfil-fondo-botones, .perfil-colores-rgb, .perfil-temas-botones {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .cambiar-fondo-btn, .eliminar-fondo-btn {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+    
+    .color-panel {
+        min-width: 80px;
+    }
+    
+    .color-label {
+        font-size: 0.5rem;
+    }
+    
+    .color-picker {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .color-option-preview {
+        width: 25px;
+        height: 25px;
+    }
+	.floating-message {
+    font-size: 14px !important;
+    padding: 15px 30px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-width: 3px !important;
+}
+/* Modal de perfil de usuario */
+.user-profile-modal {
+    max-width: 800px !important;
+    width: 90% !important;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.user-profile-container {
+    margin: 1rem 0;
+}
+
+.user-profile-fondo {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    border: 2px solid #00cc44;
+}
+
+.user-profile-avatar {
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background: #0a0a0a;
+    border: 3px solid #00ff66;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.user-profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-profile-avatar-emoji {
+    font-size: 3rem;
+}
+
+.user-profile-info {
+    margin-top: 40px;
+    padding: 0 1rem;
+}
+
+.user-profile-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    color: #00ff66;
+    margin-bottom: 0.3rem;
+}
+
+.user-profile-username {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #88ff88;
+    margin-bottom: 0.5rem;
+}
+
+.user-profile-bio {
+    background: #1a1a1a;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 1rem 0;
+    color: #ccffcc;
+    border-left: 4px solid #00ff66;
+}
+
+.user-profile-stats {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.user-profile-stat {
+    background: rgba(0, 204, 68, 0.2);
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    color: #88ff88;
+}
+
+.user-profile-posts {
+    margin-top: 1rem;
+}
+
+.user-profile-posts h4 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #00ff66;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.follow-btn, .unfollow-btn {
+    background: #00cc44;
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.follow-btn:hover, .unfollow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.unfollow-btn {
+    background: #ff3333;
+    color: white;
+}
+
+.unfollow-btn:hover {
+    background: #ff0000;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.friend-item {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.friend-item:hover {
+    background: rgba(0, 204, 68, 0.3);
+    transform: translateX(5px);
+}
+
+.friend-status {
+    font-size: 0.7rem;
+    color: #00ff66;
+    font-family: 'Courier New', monospace;
+}
+}

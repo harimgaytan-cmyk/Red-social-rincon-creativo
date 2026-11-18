@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rincón Creativo - Mural</title>
+    <link rel="stylesheet" href="mural RS UX.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="vintage-overlay"></div>
+
+    <div class="mural-container">
+        <!-- HEADER -->
+        <div class="metro-header">
+            <div class="logo-area">
+                <h1 class="metro-titulo">RINCON<span class="log-highlight">CREATIVO</span></h1>
+                <div class="user-data-container">
+                    <div class="user-foto-header" id="userFotoHeader">
+                        <img id="userFotoImagen" class="user-foto-img" src="" alt="Foto">
+                        <div class="user-foto-emoji" id="userFotoEmoji"></div>
+                    </div>
+                    <div class="user-textos">
+                        <div class="user-nickname-header" id="userNicknameHeader"></div>
+                        <div class="user-username-header" id="userUsernameHeader"></div>
+                    </div>
+                </div>
+                <div class="estado-online" id="estadoOnline">
+                    <span class="punto-verde"></span> (: 0 conectados
+                </div>
+            </div>
+            <div class="user-info" id="userInfo">
+                <button class="logout-btn" id="logoutBtn">[x] SALIR</button>
+            </div>
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN -->
+        <div class="nav-bar">
+            <button class="nav-btn active" data-section="muro">:-] MURO</button>
+            <button class="nav-btn" data-section="populares">*-* POPULARES</button>
+            <button class="nav-btn" data-section="amigos">:D AMIGOS</button>
+            <button class="nav-btn" data-section="buscar">(?) BUSCAR</button>
+            <button class="nav-btn" data-section="miperfil">=) MI PERFIL</button>
+        </div>
+
+        <!-- CONTENEDOR DE SECCIONES -->
+        <div class="sections-container">
+            <!-- SECCIÓN: MURO -->
+            <div id="muro" class="section active">
+                <div class="crear-post">
+                    <div class="post-input-wrapper">
+                        <textarea id="postContent" class="post-textarea" placeholder="¿Qué estás creando hoy?"></textarea>
+                        <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+                            <img id="imagePreview" class="image-preview" src="" alt="Vista previa">
+                            <button type="button" id="removeImageBtn" class="remove-image-btn">✖</button>
+                        </div>
+                        <div class="post-actions">
+                            <button class="emoji-btn">:-)</button>
+                            <button class="image-btn" id="uploadImageBtn">[img]</button>
+                            <input type="file" id="postImageInput" accept="image/*" style="display: none;">
+                            <button id="publishBtn" class="publish-btn">PUBLICAR →</button>
+                        </div>
+                    </div>
+                    <div class="emoticones-panel" style="display: none;">
+                        <button class="emo-classic">:-)</button>
+                        <button class="emo-classic">:-D</button>
+                        <button class="emo-classic">:-P</button>
+                        <button class="emo-classic">;-(</button>
+                        <button class="emo-classic">:-*</button>
+                        <button class="emo-classic">:-O</button>
+                        <button class="emo-classic">B-)</button>
+                        <button class="emo-classic">:-/</button>
+                        <button class="emo-classic">:‑X</button>
+                        <button class="emo-classic">:-$</button>
+                        <button class="emo-classic"><3</button>
+                        <button class="emo-classic">♥</button>
+                        <button class="emo-classic">*_*</button>
+                        <button class="emo-classic">^_^</button>
+                        <button class="emo-classic">T_T</button>
+                        <button class="emo-classic">O_O</button>
+                    </div>
+                </div>
+                <div id="postsFeed" class="posts-feed"></div>
+            </div>
+
+            <!-- SECCIÓN: POPULARES -->
+            <div id="populares" class="section">
+                <div class="info-card">
+                    <h3>*-* POSTS MÁS POPULARES *-*</h3>
+                    <div id="popularesList" class="posts-feed"></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: AMIGOS/SEGUIDORES -->
+            <div id="amigos" class="section">
+                <div class="info-card">
+                    <h3>:D PERSONAS QUE SIGUES :D</h3>
+                    <div id="amigosList" class="friends-list"></div>
+                    <button class="add-friend-btn" id="addFriendBtn">+ BUSCAR Y SEGUIR</button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: BUSCAR -->
+            <div id="buscar" class="section">
+                <div class="info-card">
+                    <h3>(?) BUSCAR USUARIOS (?)</h3>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Escribe un nickname...">
+                        <button id="performSearchBtn" class="search-submit-btn">BUSCAR →</button>
+                    </div>
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: MI PERFIL -->
+            <div id="miperfil" class="section">
+                <div class="perfil-fondo-full" id="perfilFondoFull"></div>
+                
+                <div class="perfil-fondo-botones">
+                    <button type="button" class="cambiar-fondo-btn" id="cambiarFondoBtn">🖼️ CAMBIAR FONDO</button>
+                    <button type="button" class="eliminar-fondo-btn" id="eliminarFondoBtn">[X] ELIMINAR FONDO</button>
+                    <input type="file" id="uploadFondo" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="perfil-colores-rgb">
+                    <div class="color-panel">
+                        <div class="color-label">🎨 COLOR DE BORDES</div>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="borderColorPicker" class="color-picker" value="#00cc44">
+                            <div class="color-option-preview" id="borderColorPreview" style="background: #00cc44;"></div>
+                        </div>
+                    </div>
+                    <div class="color-panel">
+                        <div class="color-label">📦 COLOR DE FONDO</div>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="bgColorPicker" class="color-picker" value="#1a1a1a">
+                            <div class="color-option-preview" id="bgColorPreview" style="background: #1a1a1a;"></div>
+                        </div>
+                    </div>
+                    <div class="color-panel">
+                        <div class="color-label">✨ COLOR DE BRILLO NEÓN</div>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="neonColorPicker" class="color-picker" value="#00ff66">
+                            <div class="color-option-preview" id="neonColorPreview" style="background: #00ff66;"></div>
+                        </div>
+                    </div>
+                    <button class="reset-colors-btn" id="resetColorsBtn">⟳ REINICIAR</button>
+                </div>
+                
+                <div class="perfil-temas-botones">
+                    <span class="tema-label">🎨 TEMAS:</span>
+                    <div class="tema-option" data-border="#00cc44" data-bg="#1a1a1a" data-neon="#00ff66" style="background: #1a1a1a; border: 2px solid #00cc44; box-shadow: 0 0 5px #00ff66;"></div>
+                    <div class="tema-option" data-border="#9b59b6" data-bg="#2d1b4e" data-neon="#bf6eff" style="background: #2d1b4e; border: 2px solid #9b59b6; box-shadow: 0 0 5px #bf6eff;"></div>
+                    <div class="tema-option" data-border="#2ecc71" data-bg="#1b3a2a" data-neon="#a8e6cf" style="background: #1b3a2a; border: 2px solid #2ecc71; box-shadow: 0 0 5px #a8e6cf;"></div>
+                    <div class="tema-option" data-border="#e74c3c" data-bg="#3a1b2a" data-neon="#ffb3b3" style="background: #3a1b2a; border: 2px solid #e74c3c; box-shadow: 0 0 5px #ffb3b3;"></div>
+                    <div class="tema-option" data-border="#3498db" data-bg="#1b2a3a" data-neon="#5dade2" style="background: #1b2a3a; border: 2px solid #3498db; box-shadow: 0 0 5px #5dade2;"></div>
+                    <div class="tema-option" data-border="#e67e22" data-bg="#3a2a1b" data-neon="#f39c12" style="background: #3a2a1b; border: 2px solid #e67e22; box-shadow: 0 0 5px #f39c12;"></div>
+                    <div class="tema-option" data-border="#1abc9c" data-bg="#1b3a3a" data-neon="#b3ffff" style="background: #1b3a3a; border: 2px solid #1abc9c; box-shadow: 0 0 5px #b3ffff;"></div>
+                    <div class="tema-option" data-border="#ff6b6b" data-bg="#3a1b1b" data-neon="#ffb3b3" style="background: #3a1b1b; border: 2px solid #ff6b6b; box-shadow: 0 0 5px #ffb3b3;"></div>
+                </div>
+                
+                <div class="perfil-card" id="perfilCard">
+                    <div class="perfil-header">
+                        <div class="perfil-avatar-container">
+                            <div class="perfil-avatar-cuadrado" id="perfilAvatarCuadrado">
+                                <img id="perfilImagen" class="perfil-imagen" src="" alt="Foto de perfil">
+                                <div class="perfil-avatar-emoji" id="perfilAvatarEmoji"></div>
+                            </div>
+                            <button class="cambiar-foto-btn" id="cambiarFotoBtn">📷 CAMBIAR FOTO</button>
+                            <input type="file" id="uploadFoto" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="perfil-stats">
+                            <div class="stat" id="postsStatBtn">:-) <span id="postCount">0</span> posts</div>
+                            <div class="stat clickable" id="seguidoresStatBtn">:D <span id="friendsCount">0</span> siguiendo</div>
+                            <div class="stat">♥ <span id="likesCount">0</span> likes</div>
+                        </div>
+                    </div>
+                    <div class="perfil-info">
+                        <h2 id="perfilNombre">Usuario</h2>
+                        <div class="perfil-nickname" id="perfilNickname"></div>
+                        <div class="perfil-username" id="perfilUsername"></div>
+                        <p class="join-date">📅 Se unió: <span id="joinDate">---</span></p>
+                        <p class="bio" id="bioText">Creativo apasionado por el arte retro</p>
+                        <button class="edit-bio-btn" id="editBioBtn">✏️ EDITAR BIO</button>
+                    </div>
+                </div>
+                
+                <div class="perfil-posts-section">
+                    <div class="info-card" id="perfilPostsCard">
+                        <h3>:-) MIS PUBLICACIONES :-)</h3>
+                        <div id="userPostsFeed" class="posts-feed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de perfil de usuario (para ver otros perfiles) -->
+    <div id="userProfileModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content user-profile-modal">
+            <div class="cabecera-glow">
+                <h2 class="modal-titulo" id="modalUserNickname">Usuario</h2>
+                <div class="subtitulo" id="modalUserUsername">@usuario</div>
+            </div>
+            
+            <div class="user-profile-container" id="userProfileContainer">
+                <!-- El contenido del perfil del usuario se cargará aquí -->
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="followUserBtn" class="follow-btn">+ SEGUIR</button>
+                <button id="unfollowUserBtn" class="unfollow-btn" style="display: none;">✖ DEJAR DE SEGUIR</button>
+                <button class="modal-close">✖</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="mural RS UX.js"></script>
+</body>
+</html>
